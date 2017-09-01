@@ -24,15 +24,10 @@ import static com.example.android.cnnews.R.id.section;
 public class Newsarticle {
 
     private String mSection;
-
     private String mDate;
-
     private String mTitle;
-
     private String mAuthor;
-
     private String mUrl;
-
 
     public Newsarticle(String section, String date, String title, String author, String url) {
         mSection = section;
@@ -42,30 +37,19 @@ public class Newsarticle {
         mUrl = url;
     }
 
-
     public String getSection() {
         return mSection;
     }
-
-
     public String getDate() {
         return mDate;
     }
-
-
     public String getTitle() {
         return mTitle;
     }
-
-
     public String getAuthor() {
         return mAuthor;
     }
-
-
     public String getUrl() {
         return mUrl;
     }
-
-
 }

@@ -16,17 +16,16 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
-              android:paddingEnd="16dp"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp"
-              android:paddingStart="16dp">
+              android:paddingEnd="5dp"
+              android:paddingLeft="0dp"
+              android:paddingRight="0dp"
+              android:paddingStart="10dp">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginRight="5dp"
         android:paddingBottom="8dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -54,7 +53,7 @@
             tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/article_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorEarthquakeDetails"
@@ -67,18 +66,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/article_author"
+            android:id="@+id/date"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorEarthquakeDetails"
             android:textSize="12sp"
-            tools:text="Mar 6, 2010"
+            tools:text="2010-08-10"
             />
-
     </LinearLayout>
 </LinearLayout>

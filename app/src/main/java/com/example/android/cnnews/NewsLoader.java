@@ -19,28 +19,14 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.android.cnnews.QueryUtils;
-
 import java.util.List;
 
-/**
- * Loads a list of earthquakes by using an AsyncTask to perform the
- * network request to the given URL.
- */
 public class NewsLoader extends AsyncTaskLoader<List<Newsarticle>> {
 
-    /** Tag for log messages */
     private static final String LOG_TAG = NewsLoader.class.getName();
 
-    /** Query URL */
     private String mUrl;
 
-    /**
-     * Constructs a new {@link NewsLoader}.
-     *
-     * @param context of the activity
-     * @param url to load data from
-     */
     public NewsLoader(Context context, String url) {
         super(context);
         mUrl = url;
@@ -51,9 +37,6 @@ public class NewsLoader extends AsyncTaskLoader<List<Newsarticle>> {
         forceLoad();
     }
 
-    /**
-     * This is on a background thread.
-     */
     @Override
     public List<Newsarticle> loadInBackground() {
         if (mUrl == null) {
@@ -61,8 +44,7 @@ public class NewsLoader extends AsyncTaskLoader<List<Newsarticle>> {
             return null;
         }
 
-        // Perform the network request, parse the response, and extract a list of earthquakes.
-        List<Newsarticle> Newsarticles = QueryUtils.fetchEarthquakeData(mUrl);
+        List<Newsarticle> Newsarticles = QueryUtils.fetchNewsArticles(mUrl);
         Log.i(LOG_TAG, "list no null");
         return Newsarticles;
     }

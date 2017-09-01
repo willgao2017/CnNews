@@ -27,35 +27,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * An {@link NewsAdapter} knows how to create a list item layout for each earthquake
- * in the data source (a list of {@link Newsarticle} objects).
- *
- * These list item layouts will be provided to an adapter view like ListView
- * to be displayed to the user.
- */
 public class NewsAdapter extends ArrayAdapter<Newsarticle> {
 
-    /**
-     * The part of the location string from the USGS service that we use to determine
-     * whether or not there is a location offset present ("5km N of Cairo, Egypt").
-     */
-    private static final String LOCATION_SEPARATOR = " of ";
-
-    /**
-     * Constructs a new {@link NewsAdapter}.
-     *
-     * @param context of the app
-     * @param newsarticles is the list of earthquakes, which is the data source of the adapter
-     */
     public NewsAdapter(Context context, List<Newsarticle> newsarticles) {
         super(context, 0, newsarticles);
     }
 
-    /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
-     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if there is an existing list item view (called convertView) that we can reuse,
@@ -66,7 +43,6 @@ public class NewsAdapter extends ArrayAdapter<Newsarticle> {
                     R.layout.earthquake_list_item, parent, false);
         }
 
-        // Find the earthquake at the given position in the list of earthquakes
         Newsarticle currentNewsarticle = getItem(position);
 
         String titleString = currentNewsarticle.getTitle();

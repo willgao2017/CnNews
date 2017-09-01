@@ -33,26 +33,17 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Helper methods related to requesting and receiving earthquake data from USGS.
- */
+
 public final class QueryUtils {
 
-    /** Tag for the log messages */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    /**
-     * Create a private constructor because no one should ever create a {@link QueryUtils} object.
-     * This class is only meant to hold static variables and methods, which can be accessed
-     * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
-     */
+
     private QueryUtils() {
     }
 
-    /**
-     * Query the USGS dataset and return a list of {@link Newsarticle} objects.
-     */
-    public static List<Newsarticle> fetchEarthquakeData(String requestUrl) {
+
+    public static List<Newsarticle> fetchNewsArticles(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -150,9 +141,9 @@ public final class QueryUtils {
      * Return a list of {@link Newsarticle} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<Newsarticle> extractFeatureFromJson(String earthquakeJSON) {
+    private static List<Newsarticle> extractFeatureFromJson(String newsJSON) {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
 
@@ -165,45 +156,42 @@ public final class QueryUtils {
         try {
 
             // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject baseJsonFeedback = new JSONObject(newsJSON);
 
-            JSONObject baseJsonResponse2 = baseJsonResponse.getJSONObject("response");
-
+            JSONObject baseJsonResponse = baseJsonFeedback.getJSONObject("response");
 
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray earthquakeArray = baseJsonResponse2.getJSONArray("results");
+            JSONArray newsarticleArray = baseJsonResponse.getJSONArray("results");
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < earthquakeArray.length(); i++) {
+            for (int i = 0; i < newsarticleArray.length(); i++) {
 
                 // Get a single earthquake at position i within the list of earthquakes
-                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                JSONObject currentNewsarticle = newsarticleArray.getJSONObject(i);
 
-                String section = currentEarthquake.getString("sectionName");
+                String section = currentNewsarticle.getString("sectionName");
 
-                String datetime = currentEarthquake.getString("webPublicationDate");
+                String datetime = currentNewsarticle.getString("webPublicationDate");
                 String date = datetime.split("T")[0];
 
-
-                String title00 = currentEarthquake.getString("webTitle");
+                String titleauthor = currentNewsarticle.getString("webTitle");
 
                 String title;
                 String authorx;
 
-                if (title00.contains("|")) {
-                    String[] title01 = title00.split("\\| ");
+                if (titleauthor.contains("|")) {
+                    String[] title01 = titleauthor.split("\\| ");
 
                     title = title01[0];
                     authorx = title01[1];
                 } else
                 {
-                    title = title00;
+                    title = titleauthor;
                     authorx = "Unknown author";
                 }
                 //        String authorx = "authorsdfdfd";
-                String url = currentEarthquake.getString("webUrl");
-
+                String url = currentNewsarticle.getString("webUrl");
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
@@ -223,5 +211,4 @@ public final class QueryUtils {
         // Return the list of earthquakes
         return newsarticles;
     }
-
 }
