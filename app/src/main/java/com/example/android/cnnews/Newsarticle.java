@@ -15,64 +15,57 @@
  */
 package com.example.android.cnnews;
 
+import static android.R.attr.author;
+import static com.example.android.cnnews.R.id.section;
+
 /**
  * An {@link Newsarticle} object contains information related to a single earthquake.
  */
 public class Newsarticle {
 
-    /** Magnitude of the earthquake */
-    private double mMagnitude;
+    private String mSection;
 
-    /** Location of the earthquake */
-    private String mLocation;
+    private String mDate;
 
-    /** Time of the earthquake */
-    private long mTimeInMilliseconds;
+    private String mTitle;
 
-    /** Website URL of the earthquake */
+    private String mAuthor;
+
     private String mUrl;
 
-    /**
-     * Constructs a new {@link Newsarticle} object.
-     *
-     * @param magnitude is the magnitude (size) of the earthquake
-     * @param location is the location where the earthquake happened
-     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
-     *                           earthquake happened
-     * @param url is the website URL to find more details about the earthquake
-     */
-    public Newsarticle(double magnitude, String location, long timeInMilliseconds, String url) {
-        mMagnitude = magnitude;
-        mLocation = location;
-        mTimeInMilliseconds = timeInMilliseconds;
+
+    public Newsarticle(String section, String date, String title, String author, String url) {
+        mSection = section;
+        mDate = date;
+        mTitle = title;
+        mAuthor = author;
         mUrl = url;
     }
 
-    /**
-     * Returns the magnitude of the earthquake.
-     */
-    public double getMagnitude() {
-        return mMagnitude;
+
+    public String getSection() {
+        return mSection;
     }
 
-    /**
-     * Returns the location of the earthquake.
-     */
-    public String getLocation() {
-        return mLocation;
+
+    public String getDate() {
+        return mDate;
     }
 
-    /**
-     * Returns the time of the earthquake.
-     */
-    public long getTimeInMilliseconds() {
-        return mTimeInMilliseconds;
+
+    public String getTitle() {
+        return mTitle;
     }
 
-    /**
-     * Returns the website URL to find more information about the earthquake.
-     */
+
+    public String getAuthor() {
+        return mAuthor;
+    }
+
+
     public String getUrl() {
         return mUrl;
     }
+
+
 }

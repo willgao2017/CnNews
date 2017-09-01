@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     /** URL for earthquake data from the USGS dataset */
     private static final String USGS_REQUEST_URL =
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
+            "https://content.guardianapis.com/search?q=china&api-key=test";
 
     /**
      * Constant value for the earthquake loader ID. We can choose any integer.

@@ -167,9 +167,12 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
 
+            JSONObject baseJsonResponse2 = baseJsonResponse.getJSONObject("response");
+
+
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
+            JSONArray earthquakeArray = baseJsonResponse2.getJSONArray("results");
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
             for (int i = 0; i < earthquakeArray.length(); i++) {
@@ -177,26 +180,34 @@ public final class QueryUtils {
                 // Get a single earthquake at position i within the list of earthquakes
                 JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
 
-                // For a given earthquake, extract the JSONObject associated with the
-                // key called "properties", which represents a list of all properties
-                // for that earthquake.
-                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                String section = currentEarthquake.getString("sectionName");
 
-                // Extract the value for the key called "mag"
-                double magnitude = properties.getDouble("mag");
+                String datetime = currentEarthquake.getString("webPublicationDate");
+                String date = datetime.split("T")[0];
 
-                // Extract the value for the key called "place"
-                String location = properties.getString("place");
 
-                // Extract the value for the key called "time"
-                long time = properties.getLong("time");
+                String title00 = currentEarthquake.getString("webTitle");
 
-                // Extract the value for the key called "url"
-                String url = properties.getString("url");
+                String title;
+                String authorx;
+
+                if (title00.contains("|")) {
+                    String[] title01 = title00.split("\\| ");
+
+                    title = title01[0];
+                    authorx = title01[1];
+                } else
+                {
+                    title = title00;
+                    authorx = "Unknown author";
+                }
+                //        String authorx = "authorsdfdfd";
+                String url = currentEarthquake.getString("webUrl");
+
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Newsarticle newsarticle = new Newsarticle(magnitude, location, time, url);
+                Newsarticle newsarticle = new Newsarticle(section, date, title, authorx, url);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 newsarticles.add(newsarticle);
