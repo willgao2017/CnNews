@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
         if (newsarticles != null && !newsarticles.isEmpty()) {
             mAdapter.addAll(newsarticles);
         }

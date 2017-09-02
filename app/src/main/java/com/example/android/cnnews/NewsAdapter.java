@@ -22,9 +22,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<Newsarticle> {
@@ -40,7 +37,7 @@ public class NewsAdapter extends ArrayAdapter<Newsarticle> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.earthquake_list_item, parent, false);
+                    R.layout.news_list_item, parent, false);
         }
 
         Newsarticle currentNewsarticle = getItem(position);

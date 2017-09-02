@@ -18,9 +18,7 @@ package com.example.android.cnnews;
 import static android.R.attr.author;
 import static com.example.android.cnnews.R.id.section;
 
-/**
- * An {@link Newsarticle} object contains information related to a single earthquake.
- */
+
 public class Newsarticle {
 
     private String mSection;
